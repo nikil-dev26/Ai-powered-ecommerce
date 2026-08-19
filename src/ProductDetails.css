@@ -1,0 +1,145 @@
+.details-page {
+  min-height: calc(100vh - 76px);
+  padding: 50px 8%;
+  background: #f7f8fc;
+}
+
+.back-button {
+  border: none;
+  background: none;
+  color: #635bff;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.details-container {
+  max-width: 1100px;
+  margin: auto;
+  background: white;
+  border-radius: 25px;
+  padding: 45px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  box-shadow: 0 15px 50px rgba(30, 30, 70, 0.06);
+}
+
+.details-image {
+  min-height: 450px;
+  border-radius: 22px;
+  background: linear-gradient(
+    135deg,
+    #eceaff,
+    #f8f8ff
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details-image span {
+  font-size: 160px;
+}
+
+.details-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.details-category {
+  color: #635bff;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.details-content h1 {
+  font-size: 42px;
+  margin: 12px 0;
+}
+
+.details-rating {
+  color: #f59e0b;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.details-rating span {
+  color: #999;
+  font-weight: 400;
+}
+
+.details-content h2 {
+  font-size: 32px;
+  margin: 25px 0 15px;
+}
+
+.details-content > p {
+  color: #777;
+  line-height: 1.8;
+}
+
+.delivery-box {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  background: #f7f7ff;
+  border-radius: 12px;
+  margin-top: 25px;
+}
+
+.delivery-box div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.delivery-box span {
+  font-size: 12px;
+  color: #888;
+}
+
+.details-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.add-cart-large,
+.buy-now {
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.add-cart-large {
+  border: none;
+  background: #635bff;
+  color: white;
+  flex: 1;
+}
+
+.buy-now {
+  border: 1px solid #635bff;
+  color: #635bff;
+  background: white;
+}
+
+@media (max-width: 800px) {
+
+  .details-container {
+    grid-template-columns: 1fr;
+    padding: 25px;
+  }
+
+  .details-image {
+    min-height: 300px;
+  }
+
+  .details-content h1 {
+    font-size: 32px;
+  }
+}
