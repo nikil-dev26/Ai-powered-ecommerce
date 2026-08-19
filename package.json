@@ -1,6 +1,7 @@
 {
-  "name": "Ai-powered-ecommerce",
+  "name": "ecommerce",
   "private": true,
+  "homepage": "https://nikil-dev26.github.io/Ai-powered-ecommerce/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
