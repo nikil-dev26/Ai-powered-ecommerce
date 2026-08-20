@@ -1,140 +1,66 @@
 import React, { useState } from 'react'
+import { CartProvider, useCart } from '../context/CartContext'
+
 import Navbar from './Navbar'
 import Hero from './Hero'
 import Categories from './Categories'
 import Products from './Products'
 import Cart from './Cart'
-import ProductDetails from './Productdetails'
+import ProductDetails from './ProductDetails'
 import Checkout from './Checkout'
 import OrderSuccess from './OrderSuccess'
+import Toast from './Toast'
+
 import './App.css'
 
-function App() {
+function AppContent() {
+  const { cart, itemCount, subtotal, toast, clearCart } = useCart()
 
-  const [cart, setCart] = useState([])
   const [search, setSearch] = useState('')
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [page, setPage] = useState('home')
-  const [orderTotal, setOrderTotal] = useState(0)
-
-  function addToCart(product) {
-
-    const existingProduct = cart.find(
-      item => item.id === product.id
-    )
-
-    if (existingProduct) {
-
-      setCart(
-        cart.map(item =>
-          item.id === product.id
-            ? {
-                ...item,
-                quantity: item.quantity + 1
-              }
-            : item
-        )
-      )
-
-    } else {
-
-      setCart([
-        ...cart,
-        {
-          ...product,
-          quantity: 1
-        }
-      ])
-    }
-  }
-
-  function increaseQty(id) {
-
-    setCart(
-      cart.map(item =>
-        item.id === id
-          ? {
-              ...item,
-              quantity: item.quantity + 1
-            }
-          : item
-      )
-    )
-  }
-
-  function decreaseQty(id) {
-
-    setCart(
-      cart.map(item =>
-        item.id === id && item.quantity > 1
-          ? {
-              ...item,
-              quantity: item.quantity - 1
-            }
-          : item
-      )
-    )
-  }
-
-  function removeItem(id) {
-
-    setCart(
-      cart.filter(item => item.id !== id)
-    )
-  }
+  const [lastOrder, setLastOrder] = useState(null)
 
   function openProduct(product) {
-
     setSelectedProduct(product)
     setPage('details')
     window.scrollTo(0, 0)
   }
 
   function openCart() {
-
     setPage('cart')
     window.scrollTo(0, 0)
   }
 
   function openCheckout() {
-
     if (cart.length === 0) return
 
-    const total = cart.reduce(
-      (sum, item) =>
-        sum + item.price * item.quantity,
-      0
-    )
-
-    setOrderTotal(total)
     setPage('checkout')
     window.scrollTo(0, 0)
   }
 
-  function placeOrder() {
+  function placeOrder(customerDetails) {
+    const order = {
+      id: 'ORD' + Date.now().toString().slice(-8),
+      total: subtotal,
+      items: cart,
+      customer: customerDetails,
+      placedAt: new Date().toISOString()
+    }
 
-    const total = cart.reduce(
-      (sum, item) =>
-        sum + item.price * item.quantity,
-      0
-    )
-
-    setOrderTotal(total)
-    setCart([])
+    setLastOrder(order)
+    clearCart()
     setPage('success')
-
     window.scrollTo(0, 0)
   }
 
   function continueShopping() {
-
     setSelectedProduct(null)
     setPage('home')
     window.scrollTo(0, 0)
   }
 
   function goHome() {
-
     setSelectedProduct(null)
     setPage('home')
     window.scrollTo(0, 0)
@@ -144,10 +70,7 @@ function App() {
     <div className="app">
 
       <Navbar
-        cartCount={cart.reduce(
-          (total, item) => total + item.quantity,
-          0
-        )}
+        cartCount={itemCount}
         search={search}
         setSearch={setSearch}
         openCart={openCart}
@@ -169,7 +92,6 @@ function App() {
           <Categories />
 
           <Products
-            addToCart={addToCart}
             search={search}
             openProduct={openProduct}
           />
@@ -179,7 +101,6 @@ function App() {
       {page === 'details' && (
         <ProductDetails
           product={selectedProduct}
-          addToCart={addToCart}
           goBack={goHome}
           openCart={openCart}
         />
@@ -187,10 +108,6 @@ function App() {
 
       {page === 'cart' && (
         <Cart
-          cart={cart}
-          increaseQty={increaseQty}
-          decreaseQty={decreaseQty}
-          removeItem={removeItem}
           openCheckout={openCheckout}
           continueShopping={continueShopping}
         />
@@ -198,20 +115,29 @@ function App() {
 
       {page === 'checkout' && (
         <Checkout
-          cart={cart}
           placeOrder={placeOrder}
           goBack={openCart}
         />
       )}
 
-      {page === 'success' && (
+      {page === 'success' && lastOrder && (
         <OrderSuccess
-          totalAmount={orderTotal}
+          order={lastOrder}
           continueShopping={continueShopping}
         />
       )}
 
+      <Toast message={toast} />
+
     </div>
+  )
+}
+
+function App() {
+  return (
+    <CartProvider>
+      <AppContent />
+    </CartProvider>
   )
 }
 

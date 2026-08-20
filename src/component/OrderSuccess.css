@@ -1,0 +1,95 @@
+.success-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 40px 20px;
+}
+
+.success-box {
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 44px 32px;
+  box-shadow: var(--shadow-lg);
+}
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--emerald);
+  color: #fff;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-label {
+  color: var(--emerald);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+
+.success-page h1 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.success-message {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+.order-details {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.order-details > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  padding: 6px 0;
+}
+
+.order-details span {
+  color: var(--text-muted);
+}
+
+.confirmed {
+  color: var(--emerald);
+}
+
+.delivery-message {
+  background: #f0fdf4;
+  color: var(--emerald);
+  font-size: 0.85rem;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.shopping-btn {
+  background: var(--indigo);
+  color: #fff;
+  padding: 13px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.shopping-btn:hover {
+  background: var(--indigo-dark);
+}

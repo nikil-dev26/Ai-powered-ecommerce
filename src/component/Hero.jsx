@@ -2,15 +2,10 @@ import React from 'react'
 import './Hero.css'
 
 function Hero({ goToProducts }) {
-
   return (
     <section className="hero">
-
       <div className="hero-content">
-
-        <div className="hero-badge">
-          ✨ New Collection 2026
-        </div>
+        <div className="hero-badge">✨ New Collection 2026</div>
 
         <h1>
           Shop Smarter.
@@ -19,30 +14,21 @@ function Hero({ goToProducts }) {
         </h1>
 
         <p>
-          Discover premium products, exclusive deals
-          and everything you need — all in one place.
+          Discover premium products, exclusive deals and everything you need
+          — all in one place.
         </p>
 
         <div className="hero-buttons">
-
-          <button
-            className="primary-btn"
-            onClick={goToProducts}
-          >
+          <button className="primary-btn" onClick={goToProducts}>
             Shop Now →
           </button>
 
-          <button
-            className="secondary-btn"
-            onClick={goToProducts}
-          >
+          <button className="secondary-btn" onClick={goToProducts}>
             Explore Products
           </button>
-
         </div>
 
         <div className="hero-features">
-
           <div>
             <strong>10K+</strong>
             <span>Products</span>
@@ -57,13 +43,10 @@ function Hero({ goToProducts }) {
             <strong>24/7</strong>
             <span>Support</span>
           </div>
-
         </div>
-
       </div>
 
       <div className="hero-visual">
-
         <div className="circle"></div>
 
         <div className="floating-card card-one">
@@ -82,12 +65,8 @@ function Hero({ goToProducts }) {
           </div>
         </div>
 
-        <div className="shopping-bag">
-          🛍️
-        </div>
-
+        <div className="shopping-bag">🛍️</div>
       </div>
-
     </section>
   )
 }
